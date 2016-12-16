@@ -24,26 +24,27 @@ public class Exercise5
     	else
     	{
     		String direction = "";
+    		Maze.visited(currentCandidate.attempt.row, currentCandidate.attempt.col);
     		//If it's possible to go west.
-    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col-1))
+    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col-1) && !hasVisited(currentCandidate.attempt.row,currentCandidate.attempt.col-1))
     		{
     			direction = "west";
     			addNewCandidates(candidates, c, direction);
     		}
     		//If it's possible to go east.
-    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col+1))
+    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col+1) && !hasVisited(currentCandidate.attempt.row,currentCandidate.attempt.col+1))
     		{
     			direction = "east";
     			addNewCandidates(candidates, c, direction);
     		}
 			//If it's possible to go north.
-    		if (!Maze.hasWall(currentCandidate.attempt.row-1,currentCandidate.attempt.col))
+    		if (!Maze.hasWall(currentCandidate.attempt.row-1,currentCandidate.attempt.col) && !hasVisited(currentCandidate.attempt.row-1,currentCandidate.attempt.col))
     		{
     			direction = "north";
     			addNewCandidates(candidates, c, direction);
     		}
 			//If it's possible to go south.
-    		if (!Maze.hasWall(currentCandidate.attempt.row+1,currentCandidate.attempt.col))
+    		if (!Maze.hasWall(currentCandidate.attempt.row+1,currentCandidate.attempt.col) && !hasVisited(currentCandidate.attempt.row+1,currentCandidate.attempt.col))
     		{
     			direction="south";
     			addNewCandidates(candidates, c, direction);
@@ -59,18 +60,22 @@ public class Exercise5
 		if (direction.equals("west"))
 		{
 			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row,currentCandidate.attempt.col-1),c+1);
+			candidates.add(newCandidate);
 		}
 		if (direction.equals("north"))
 		{
 			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row-1,currentCandidate.attempt.col),c+1);
+			candidates.add(newCandidate);
 		}
 		if (direction.equals("east"))
 		{
 			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row,currentCandidate.attempt.col+1),c+1);
+			candidates.add(newCandidate);
 		}
 		if (direction.equals("south"))
 		{
 			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row+1,currentCandidate.attempt.col), c+1);
+			candidates.add(newCandidate);
 		}
 	}
 
