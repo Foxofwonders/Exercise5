@@ -18,17 +18,61 @@ public class Exercise5
     	Candidate currentCandidate = candidates.get(c);
     	if (Maze.hasRabbit(currentCandidate.attempt.row, currentCandidate.attempt.col))
     	{ 
-	    	//showPath (candidates, c);
+	    	showPath (candidates, c);
 	    	found=true; 
     	}
     	else
     	{
-    		found=false;
+    		String direction = "";
+    		//If it's possible to go west.
+    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col-1))
+    		{
+    			direction = "west";
+    			addNewCandidates(candidates, c, direction);
+    		}
+    		//If it's possible to go east.
+    		if (!Maze.hasWall(currentCandidate.attempt.row,currentCandidate.attempt.col+1))
+    		{
+    			direction = "east";
+    			addNewCandidates(candidates, c, direction);
+    		}
+			//If it's possible to go north.
+    		if (!Maze.hasWall(currentCandidate.attempt.row-1,currentCandidate.attempt.col))
+    		{
+    			direction = "north";
+    			addNewCandidates(candidates, c, direction);
+    		}
+			//If it's possible to go south.
+    		if (!Maze.hasWall(currentCandidate.attempt.row+1,currentCandidate.attempt.col))
+    		{
+    			direction="south";
+    			addNewCandidates(candidates, c, direction);
+    		}
     	}
-    	System.out.print(found);
     	c++;
     }
   }
+
+	private static void addNewCandidates(ArrayList<Candidate> candidates, int c, String direction)
+	{
+		Candidate currentCandidate = candidates.get(c);
+		if (direction.equals("west"))
+		{
+			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row,currentCandidate.attempt.col-1),c+1);
+		}
+		if (direction.equals("north"))
+		{
+			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row-1,currentCandidate.attempt.col),c+1);
+		}
+		if (direction.equals("east"))
+		{
+			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row,currentCandidate.attempt.col+1),c+1);
+		}
+		if (direction.equals("south"))
+		{
+			Candidate newCandidate = new Candidate(new Attempt(currentCandidate.attempt.row+1,currentCandidate.attempt.col), c+1);
+		}
+	}
 
 	private static void showPath(ArrayList<Candidate> candidates, int c)
 	{
