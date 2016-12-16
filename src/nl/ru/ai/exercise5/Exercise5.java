@@ -14,7 +14,24 @@ public class Exercise5
     int c=0;
     while(c<candidates.size() & !found)
     {
-      // weave your magic here
+    	char[][] maze = Maze.maze;
+    	Candidate currentCandidate = candidates.get(c);
+    	if (Maze.hasRabbit(currentCandidate.attempt.row, currentCandidate.attempt.col))
+    	{ 
+	    	//showPath (candidates, c);
+	    	found=true; 
+    	}
+    	else
+    	{
+    		found=false;
+    	}
+    	System.out.print(found);
+    	c++;
     }
   }
+
+	private static void showPath(ArrayList<Candidate> candidates, int c)
+	{
+		return;
+	}
 }
