@@ -2,12 +2,12 @@ package nl.ru.ai.exercise5;
 
 public class CandidateSlide 
 {
-	  public AttemptSlide attempt;
+	  public AttemptSlide AttemptSlide;
 	  public int parentCandidate;
 	  
-	  public CandidateSlide(AttemptSlide attempt, int parentCandidate)
+	  public CandidateSlide(AttemptSlide AttemptSlide, int parentCandidate)
 	  {
-	    this.attempt=attempt;
+	    this.AttemptSlide=AttemptSlide;
 	    this.parentCandidate=parentCandidate;
 	  }
 
