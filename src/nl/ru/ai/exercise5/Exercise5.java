@@ -1,5 +1,7 @@
 package nl.ru.ai.exercise5;
 
+//By Anna Gansen and Denise van Baalen
+
 import static nl.ru.ai.exercise5.Maze.*;
 
 import java.util.ArrayList;

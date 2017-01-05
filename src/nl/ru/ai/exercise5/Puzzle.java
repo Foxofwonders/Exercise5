@@ -14,8 +14,14 @@ public class Puzzle {
 		}
 		;
 	
+	/** Finds the zero coordinate expressed in a single integer.
+	 * @param puzzle
+	 * @return
+	 */
 	static int findZero(int[][]puzzle)
 	{
+		assert puzzle!=null:"Puzzle should be initialised";
+		
 		int counter = 0;
 		for(int row=0;row<HEIGHT;row++)
 		{
@@ -28,8 +34,14 @@ public class Puzzle {
 		return 0;
 	}
 	
+	/** Checks whether the puzzle is finished.
+	 * @param puzzle
+	 * @return
+	 */
 	static boolean puzzleReady(int[][] puzzle)
 	{
+		assert puzzle!=null:"Puzzle should be initialised";
+		
 		int[][] puzzleDone =
 			{
 					{1,2,3},
