@@ -11,7 +11,8 @@ public class Puzzle {
 			{1,2,3},
 			{4,5,6},
 			{0,7,8}
-		};
+		}
+		;
 	
 	static int findZero(int[][]puzzle)
 	{

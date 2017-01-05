@@ -23,7 +23,7 @@ public class Sliding_puzzle
 	    	CandidateSlide currentCandidate = candidates.get(c);
 	    	if (Puzzle.puzzleReady(currentCandidate.AttemptSlide.thisPuzzle))
 	    	{ 
-		    	//showPath (candidates, c);
+		    	showPath (candidates, c);
 		    	found=true; 
 		    	System.out.print(found);
 	    	}
@@ -35,13 +35,13 @@ public class Sliding_puzzle
 	    		if((goWest(currentCandidate))) addNewCandidate(candidates, c, Direction.WEST);
 	    		if((goEast(currentCandidate))) addNewCandidate(candidates, c, Direction.EAST);
 	    	}
+	    	c++;
 	    }
 	}
 	
 	
 	static boolean goNorth(CandidateSlide currentCandidate) 
 	{
-		System.out.println(currentCandidate.AttemptSlide.zeroCoordinate);
 		return currentCandidate.AttemptSlide.zeroCoordinate>=Puzzle.WIDTH;
 	}
 	
@@ -63,25 +63,35 @@ public class Sliding_puzzle
 	private static void addNewCandidate(ArrayList<CandidateSlide> candidates, int c, Direction direction) 
 	{
 		CandidateSlide currentCandidate = candidates.get(c);
-		int[][] newPuzzle = currentCandidate.AttemptSlide.thisPuzzle;
+		int[][] newPuzzle = new int [Puzzle.HEIGHT][Puzzle.WIDTH];
+		for(int i=0;i<Puzzle.HEIGHT;i++)
+		{
+			for(int j=0;j<Puzzle.WIDTH;j++)
+			{
+				newPuzzle[i][j]=currentCandidate.AttemptSlide.thisPuzzle[i][j];
+			}
+		}
 		int zeroOldPuzzle = Puzzle.findZero(newPuzzle);
-		// TODO Auto-generated method stub
+		
+		
 		if (direction==Direction.NORTH)
 		{
 			int zeroNewPuzzle=zeroOldPuzzle-Puzzle.WIDTH;
-			System.out.println(zeroNewPuzzle+" "+zeroOldPuzzle);
 			int oldCoordinate = newPuzzle[zeroNewPuzzle/Puzzle.WIDTH][zeroNewPuzzle%Puzzle.WIDTH];
 			newPuzzle[zeroNewPuzzle/Puzzle.WIDTH][zeroNewPuzzle%Puzzle.WIDTH]=0;
 			newPuzzle[zeroOldPuzzle/Puzzle.WIDTH][zeroOldPuzzle%Puzzle.WIDTH]=oldCoordinate;
-			CandidateSlide newCandidateSlide = new CandidateSlide(new AttemptSlide(newPuzzle,zeroNewPuzzle),c);
+			
+			
 			for(int i=0; i<candidates.size(); i++)
 			{
 				if(Arrays.deepEquals(newPuzzle,candidates.get(i).AttemptSlide.thisPuzzle))
 				{
 					return;
 				}
-				else candidates.add(newCandidateSlide);
 			}
+			CandidateSlide newCandidateSlide = new CandidateSlide(new AttemptSlide(newPuzzle,zeroNewPuzzle),c);
+			candidates.add(newCandidateSlide);
+				
 		}
 		if (direction==Direction.SOUTH)
 		{
