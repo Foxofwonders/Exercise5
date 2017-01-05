@@ -1,13 +1,14 @@
 package nl.ru.ai.exercise5;
 
-public class AttemptSlide 
+public class AttemptSlide
 {
-	public int zeroCoordinate;
-	public int[] slides;
-	  
-	public AttemptSlide(int zeroCoordinate,int[] slides)
-	{
-		this.slides[zeroCoordinate]=zeroCoordinate;
-	}
+  public int [][]thisPuzzle;
+  public int zeroCoordinate;
+  
+  public AttemptSlide(int [][] thisPuzzle, int zeroCoordinate)
+  {
+    this.thisPuzzle=thisPuzzle;
+    this.zeroCoordinate=zeroCoordinate;
+  }
 
 }

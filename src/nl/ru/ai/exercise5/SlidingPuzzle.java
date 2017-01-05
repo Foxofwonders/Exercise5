@@ -6,10 +6,9 @@ import java.util.Arrays;
 
 public class SlidingPuzzle 
 {
-	private final static int[] SOLUTION = {1,2,3,4,5,6,7,8,9,0};
 	 public static void main(String[] arguments)
 	  {
-		int[] puzzle = {1,2,3,4,5,6,0,7,8};
+		int[][] puzzle = Puzzle.board;
 	    ArrayList<CandidateSlide> candidates=new ArrayList<CandidateSlide>();
 	    candidates.add(new CandidateSlide(new AttemptSlide (6,puzzle),0));
 	    boolean found=false;
